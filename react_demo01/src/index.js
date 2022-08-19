@@ -1,19 +1,15 @@
 // 1. 导包
+import React from 'react'
 import ReactDom from 'react-dom/client'
-// 2. 创建
-// 控制类名
-import './index.css'
-const VNode = (
+// 导入组件
+import Hello from './components/hello'
+import Home from './components/home'
+// 2
+const App = (
   <>
-    <div
-      style={{
-        width: '100px',
-        height: '100px',
-        backgroundColor: 'pink',
-      }}
-    ></div>
-    <div className="box title"></div>
+    <Hello></Hello>
+    <Home></Home>
   </>
 )
 // 3. 挂载
-ReactDom.createRoot(document.querySelector('#root')).render(VNode)
+ReactDom.createRoot(document.querySelector('#root')).render(App)
