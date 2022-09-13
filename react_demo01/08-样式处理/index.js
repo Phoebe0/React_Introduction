@@ -5,6 +5,7 @@ import ReactDom from 'react-dom/client'
 import './index.css'
 const VNode = (
   <>
+  {/* 行内样式 */}
     <div
       style={{
         width: '100px',
@@ -12,6 +13,7 @@ const VNode = (
         backgroundColor: 'pink',
       }}
     ></div>
+    {/* 类名 */}
     <div className="box title"></div>
   </>
 )
