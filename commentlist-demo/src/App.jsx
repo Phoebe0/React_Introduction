@@ -1,10 +1,12 @@
-import { Component } from 'react'
+import { Component, createRef } from 'react'
 import dayjs from 'dayjs'
 
 // 处理可变的类名
 import classNames from 'classnames'
 
 class App extends Component {
+  // 设置ref
+  textRef = createRef()
   // 格式化时间的处理函数
   formatTime = (time) => {
     return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
@@ -70,13 +72,16 @@ class App extends Component {
 
   // 发表按钮，将输入框内容添加到列表
   handleSubmit = () => {
+    console.log(this.textRef.current)
+
     // 如果没输入内容，弹出提示框
     if (!this.state.content.trim()) {
       // 如果输入了空格，也要记得清空content
       this.setState({
         content: '',
       })
-      return alert('请输入内容')
+      // 自动获取焦点
+      return this.textRef.current.focus()
     }
     // 向state中的list数组中新增一条内容
     this.setState({
@@ -142,6 +147,7 @@ class App extends Component {
                 className="ipt-txt"
                 value={content}
                 onChange={this.changeContent}
+                ref={this.textRef}
               />
               <button className="comment-submit" onClick={this.handleSubmit}>
                 发表评论
