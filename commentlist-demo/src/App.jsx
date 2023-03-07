@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import classNames from 'classnames'
 
 class App extends Component {
-  // 设置ref
+  // 设置文本域ref
   textRef = createRef()
   // 格式化时间的处理函数
   formatTime = (time) => {
@@ -62,7 +62,7 @@ class App extends Component {
     ],
     content: '', //多行文本域输入的内容
   }
-  // 提供方法
+  // --------- 提供方法-------------
   // 输入框输入内容实时同步给 content
   changeContent = (e) => {
     this.setState({
@@ -103,6 +103,44 @@ class App extends Component {
     })
   }
 
+  // 删除评论  根据评论id删除
+  subComment = (id) => {
+    console.log(id)
+    this.setState({
+      list: this.state.list.filter((item) => item.id !== id),
+    })
+  }
+
+  // 赞与踩
+  setAttitude = (id, attitude) => {
+    console.log(id)
+    this.setState({
+      list: this.state.list.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            attitude,
+          }
+        } else {
+          return item
+        }
+      }),
+    })
+  }
+
+  // tab栏切换
+  setTab = (type) => {
+    this.setState({
+      // 高亮切换
+      active: type,
+      // 不同规则排序
+      list:
+        type === 'hot'
+          ? this.state.list.sort((a, b) => a.id - b.id)
+          : this.state.list.sort((a, b) => a.time - b.time),
+    })
+  }
+
   render() {
     // 解构赋值
     const { list, tabs, active, content } = this.state
@@ -122,6 +160,7 @@ class App extends Component {
                   <li
                     key={item.id}
                     className={item.type === active ? 'on' : ''}
+                    onClick={() => this.setTab(item.type)}
                   >
                     按{item.name}排序
                   </li>
@@ -177,6 +216,9 @@ class App extends Component {
                         className={classNames('like', {
                           liked: item.attitude === 1,
                         })}
+                        onClick={() =>
+                          this.setAttitude(item.id, item.attitude === 1 ? 0 : 1)
+                        }
                       >
                         <i className="icon" />
                       </span>
@@ -184,10 +226,22 @@ class App extends Component {
                         className={classNames('hate', {
                           hated: item.attitude === -1,
                         })}
+                        onClick={() =>
+                          this.setAttitude(
+                            item.id,
+                            item.attitude === -1 ? 0 : -1
+                          )
+                        }
                       >
                         <i className="icon" />
                       </span>
-                      <span className="reply btn-hover">删除</span>
+                      {/* 写成箭头函数目的是点击时就能触发 */}
+                      <span
+                        className="reply btn-hover"
+                        onClick={() => this.subComment(item.id)}
+                      >
+                        删除
+                      </span>
                     </div>
                   </div>
                 </div>
