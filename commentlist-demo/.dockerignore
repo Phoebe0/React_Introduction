@@ -1,0 +1,4 @@
+# 排除这三个路径，不打包进image文件中
+.git
+node_modules
+npm-debug.log
