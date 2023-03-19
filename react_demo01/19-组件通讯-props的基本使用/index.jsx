@@ -16,6 +16,9 @@ import ReactDom from 'react-dom/client'
     3. 获取值
 
 */
+function Hi(props) {
+  return <div>{props.name}</div>
+}
 // 接收数据：
 // class 组件需要通过 this.props 来获取
 class Hello extends Component {
@@ -27,6 +30,7 @@ class Hello extends Component {
 const VNode = (
   <div>
     <Hello name="jack" age={19} />
+    <Hi name="Tricia"></Hi>
   </div>
 )
 ReactDom.createRoot(document.querySelector('#root')).render(VNode)
