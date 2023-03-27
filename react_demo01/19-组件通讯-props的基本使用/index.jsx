@@ -7,15 +7,7 @@
 import { Component } from 'react'
 import ReactDom from 'react-dom/client'
 
-// 非受控组件是通过ref配合获取到表单元素的值
-
-/* 
-  步骤：
-    1. 导入creatRef，并创建一个ref对象。
-    2. 和结构绑定
-    3. 获取值
-
-*/
+// 函数组件通过props获取
 function Hi(props) {
   return <div>{props.name}</div>
 }
@@ -30,7 +22,7 @@ class Hello extends Component {
 const VNode = (
   <div>
     <Hello name="jack" age={19} />
-    <Hi name="Tricia"></Hi>
+    <Hi name={'Tricia'}></Hi>
   </div>
 )
 ReactDom.createRoot(document.querySelector('#root')).render(VNode)
