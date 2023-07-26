@@ -1,0 +1,30 @@
+// 公共样式
+$base-w: 10px;
+$border-w: 2px;
+$margin: 10px;
+$border-color: #d9d9d9;
+$c-grey: #333;
+$c-blue: #40a9ff;
+$c-red: #e45229;
+$c-green: #31bb7f;
+$c-blue1: #4143dd;
+$c-white: #ebefe5;
+
+button {
+  width: 5 * $base-w;
+  height: 5 * $base-w;
+  border-radius: 50%;
+  background-color: $c-blue1;
+  color: $c-white;
+}
+.parent {
+  border: $border-w solid $c-red;
+}
+.child {
+  margin: 1.5 * $margin;
+  border: $border-w solid $c-blue;
+}
+.info {
+  margin: 2 * $margin;
+  border: $border-w solid $c-green;
+}
