@@ -1,9 +1,10 @@
 import { Component, createRef } from 'react'
 import dayjs from 'dayjs'
 
-// 处理可变的类名
-import classNames from 'classnames'
-
+import Form from './components/Form'
+import List from './components/List'
+import Tabs from './components/Tabs'
+import Count from './components/Count'
 class App extends Component {
   // 设置文本域ref
   textRef = createRef()
@@ -148,106 +149,13 @@ class App extends Component {
       <div className="App">
         <div className="comment-container">
           {/* 评论数 */}
-          <div className="comment-head">
-            <span>{list.length} 评论</span>
-          </div>
+          <Count count={list.length}></Count>
           {/* 排序 */}
-          <div className="tabs-order">
-            <ul className="sort-container">
-              {tabs.map((item) => {
-                // 检查tabs中的type与active值是否匹配，如果匹配的话就选中状态
-                return (
-                  <li
-                    key={item.id}
-                    className={item.type === active ? 'on' : ''}
-                    onClick={() => this.setTab(item.type)}
-                  >
-                    按{item.name}排序
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-
+          <Tabs tabs={tabs} active={active}></Tabs>
           {/* 添加评论 */}
-          <div className="comment-send">
-            <div className="user-face">
-              <img
-                className="user-head"
-                src="https://avatar-1312548952.cos.ap-shanghai.myqcloud.com/7f084dde2deb4ad28ed13605febcc7c2.png"
-                alt=""
-              />
-            </div>
-            <div className="textarea-container">
-              <textarea
-                cols="80"
-                rows="5"
-                placeholder="请您发言💬"
-                className="ipt-txt"
-                value={content}
-                onChange={this.changeContent}
-                ref={this.textRef}
-              />
-              <button className="comment-submit" onClick={this.handleSubmit}>
-                发表评论
-              </button>
-            </div>
-            <div className="comment-emoji">
-              <i className="face"></i>
-              <span className="text">表情</span>
-            </div>
-          </div>
-
+          <Form content={content}></Form>
           {/* 评论列表 */}
-          <div className="comment-list">
-            {/* 每一项评论 */}
-            {list.map((item) => {
-              return (
-                <div key={item.id} className="list-item">
-                  <div className="user-face">
-                    <img className="user-head" src={item.avatar} alt="" />
-                  </div>
-                  <div className="comment">
-                    <div className="user">{item.author}</div>
-                    <p className="text">{item.comment}</p>
-                    <div className="info">
-                      <span className="time">{this.formatTime(item.time)}</span>
-                      <span
-                        className={classNames('like', {
-                          liked: item.attitude === 1,
-                        })}
-                        onClick={() =>
-                          this.setAttitude(item.id, item.attitude === 1 ? 0 : 1)
-                        }
-                      >
-                        <i className="icon" />
-                      </span>
-                      <span
-                        className={classNames('hate', {
-                          hated: item.attitude === -1,
-                        })}
-                        onClick={() =>
-                          this.setAttitude(
-                            item.id,
-                            item.attitude === -1 ? 0 : -1
-                          )
-                        }
-                      >
-                        <i className="icon" />
-                      </span>
-                      {/* 写成箭头函数目的是点击时就能触发 */}
-                      <span
-                        className="reply btn-hover"
-                        onClick={() => this.subComment(item.id)}
-                      >
-                        删除
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <List list={list}></List>
         </div>
       </div>
     )
