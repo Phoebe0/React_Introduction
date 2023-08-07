@@ -105,7 +105,7 @@ class App extends Component {
     }
   }
   /**
-   *
+   * 回掉函数
    * @param {*} id 评论的唯一标识
    * @param {*} attitude 1: 点赞 0：无态度 -1:踩
    * @param {*} type tab栏状态
