@@ -12,7 +12,7 @@ export default class Tabs extends Component {
               <li
                 key={item.id}
                 className={item.type === this.props.active ? 'on' : ''}
-                onClick={() => this.setTab(item.type)}
+                onClick={() => this.props.setTab(item.type)}
               >
                 按{item.name}排序
               </li>

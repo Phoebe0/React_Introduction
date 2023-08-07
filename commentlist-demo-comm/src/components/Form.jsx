@@ -19,10 +19,13 @@ export default class Form extends Component {
             placeholder="请您发言💬"
             className="ipt-txt"
             value={this.props.content}
-            onChange={this.changeContent}
-            ref={this.textRef}
+            onChange={(e) => this.props.changeContent(e)}
+            ref={this.props.textRef}
           />
-          <button className="comment-submit" onClick={this.handleSubmit}>
+          <button
+            className="comment-submit"
+            onClick={() => this.props.handleSubmit()}
+          >
             发表评论
           </button>
         </div>

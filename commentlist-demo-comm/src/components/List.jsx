@@ -17,13 +17,18 @@ export default class List extends Component {
                 <div className="user">{item.author}</div>
                 <p className="text">{item.comment}</p>
                 <div className="info">
-                  <span className="time">{this.formatTime(item.time)}</span>
+                  <span className="time">
+                    {this.props.formatTime(item.time)}
+                  </span>
                   <span
                     className={classNames('like', {
                       liked: item.attitude === 1,
                     })}
                     onClick={() =>
-                      this.setAttitude(item.id, item.attitude === 1 ? 0 : 1)
+                      this.props.setAttitude(
+                        item.id,
+                        item.attitude === 1 ? 0 : 1
+                      )
                     }
                   >
                     <i className="icon" />
@@ -33,7 +38,10 @@ export default class List extends Component {
                       hated: item.attitude === -1,
                     })}
                     onClick={() =>
-                      this.setAttitude(item.id, item.attitude === -1 ? 0 : -1)
+                      this.props.setAttitude(
+                        item.id,
+                        item.attitude === -1 ? 0 : -1
+                      )
                     }
                   >
                     <i className="icon" />
@@ -41,7 +49,7 @@ export default class List extends Component {
                   {/* 写成箭头函数目的是点击时就能触发 */}
                   <span
                     className="reply btn-hover"
-                    onClick={() => this.subComment(item.id)}
+                    onClick={() => this.props.subComment(item.id)}
                   >
                     删除
                   </span>

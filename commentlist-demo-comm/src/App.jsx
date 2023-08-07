@@ -83,27 +83,33 @@ class App extends Component {
       })
       // 自动获取焦点
       return this.textRef.current.focus()
+    } else {
+      // 向state中的list数组中新增一条内容
+      this.setState({
+        list: [
+          {
+            id: Date.now(),
+            author: 'Tricia',
+            comment: this.state.content,
+            time: new Date(),
+            // 1: 点赞 0：无态度 -1:踩
+            attitude: 0,
+            avatar:
+              'https://avatar-1312548952.cos.ap-shanghai.myqcloud.com/7f084dde2deb4ad28ed13605febcc7c2.png',
+          },
+          ...this.state.list,
+        ],
+        // 清空content
+        content: '',
+      })
     }
-    // 向state中的list数组中新增一条内容
-    this.setState({
-      list: [
-        {
-          id: Date.now(),
-          author: 'Tricia',
-          comment: this.state.content,
-          time: new Date(),
-          // 1: 点赞 0：无态度 -1:踩
-          attitude: 0,
-          avatar:
-            'https://avatar-1312548952.cos.ap-shanghai.myqcloud.com/7f084dde2deb4ad28ed13605febcc7c2.png',
-        },
-        ...this.state.list,
-      ],
-      // 清空content
-      content: '',
-    })
   }
-
+  /**
+   *
+   * @param {*} id 评论的唯一标识
+   * @param {*} attitude 1: 点赞 0：无态度 -1:踩
+   * @param {*} type tab栏状态
+   */
   // 删除评论  根据评论id删除
   subComment = (id) => {
     console.log(id)
@@ -151,11 +157,21 @@ class App extends Component {
           {/* 评论数 */}
           <Count count={list.length}></Count>
           {/* 排序 */}
-          <Tabs tabs={tabs} active={active}></Tabs>
+          <Tabs tabs={tabs} active={active} setTab={this.setTab}></Tabs>
           {/* 添加评论 */}
-          <Form content={content}></Form>
+          <Form
+            content={content}
+            handleSubmit={this.handleSubmit}
+            changeContent={this.changeContent}
+            textRef={this.textRef}
+          ></Form>
           {/* 评论列表 */}
-          <List list={list}></List>
+          <List
+            list={list}
+            subComment={this.subComment}
+            setAttitude={this.setAttitude}
+            formatTime={this.formatTime}
+          ></List>
         </div>
       </div>
     )
