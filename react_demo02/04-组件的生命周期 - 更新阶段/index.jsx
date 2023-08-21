@@ -16,9 +16,9 @@ export default class App extends Component {
     this.setState({
       a: this.state.a + 1,
     })
-    this.state.b += 1
-    this.forceUpdate() // 强更新(强制DOM更新)
-    console.log(this.state.b)
+    // this.state.b += 1
+    // this.forceUpdate() // 强更新(强制DOM更新)
+    // console.log(this.state.b)
   }
   render() {
     console.log('render')
