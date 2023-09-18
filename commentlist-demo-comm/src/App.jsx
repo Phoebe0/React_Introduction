@@ -28,39 +28,7 @@ class App extends Component {
       },
     ],
     active: 'hot',
-    list: [
-      {
-        id: 1,
-        author: 'Lucy',
-        comment: 'up大大好厉害，期待下个作品',
-        time: new Date('2022-12-10 09:09:00'),
-        // 1: 点赞 0：无态度 -1:踩
-        attitude: 1,
-        // 腾讯云存储桶里面的图片
-        avatar:
-          'https://avatar-1312548952.cos.ap-shanghai.myqcloud.com/19a4c26f880511ebb6edd017c2d2eca2.jpg',
-      },
-      {
-        id: 2,
-        author: 'Moily',
-        comment: '哇，有点东西',
-        time: new Date('2022-12-01 09:09:00'),
-        // 1: 点赞 0：无态度 -1:踩
-        attitude: 0,
-        avatar:
-          'https://avatar-1312548952.cos.ap-shanghai.myqcloud.com/1d46e0944ed9446695f4cb01804d5fc9.jpg',
-      },
-      {
-        id: 3,
-        author: 'Tricia',
-        comment: '这也太简单了吧😅',
-        time: new Date('2022-11-11 10:09:00'),
-        // 1: 点赞 0：无态度 -1:踩
-        attitude: -1,
-        avatar:
-          'https://avatar-1312548952.cos.ap-shanghai.myqcloud.com/7f084dde2deb4ad28ed13605febcc7c2.png',
-      },
-    ],
+    list: JSON.parse(localStorage.getItem('list')) || [],
     content: '', //多行文本域输入的内容
   }
   // --------- 提供方法-------------
@@ -105,7 +73,7 @@ class App extends Component {
     }
   }
   /**
-   * 回掉函数
+   * 回调函数
    * @param {*} id 评论的唯一标识
    * @param {*} attitude 1: 点赞 0：无态度 -1:踩
    * @param {*} type tab栏状态
@@ -175,6 +143,11 @@ class App extends Component {
         </div>
       </div>
     )
+  }
+
+  // 本地持久化处理  要在componentDidUpdate()这个钩子函数中执行
+  componentDidUpdate() {
+    localStorage.setItem('list', JSON.stringify(this.state.list))
   }
 }
 export default App
