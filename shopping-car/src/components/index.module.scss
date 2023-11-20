@@ -1,0 +1,46 @@
+$basic-color: #0ddd9b;
+$text-color: #9e8d8d;
+.header {
+  width: 100%;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  background-color: $basic-color;
+  text-align: center;
+  color: $text-color;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-shadow: 1px 5px 5px #000;
+}
+.footer {
+  width: 100%;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  position: absolute;
+  left: 0;
+  bottom: 0.625rem;
+  background-color: $basic-color;
+  display: flex;
+  justify-content: space-around;
+  color: $text-color;
+}
+.img {
+  width: 3.125rem;
+  height: 3.125rem;
+  margin: 0 1.25rem;
+}
+.product {
+  display: flex;
+  justify-content: space-between;
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+}
+.pro_price {
+  color: #a1342d;
+}
+.counter {
+  position: absolute;
+  right: 0.625rem;
+}
