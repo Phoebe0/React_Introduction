@@ -38,7 +38,14 @@ $text-color: #9e8d8d;
   // align-items: center;
 }
 .pro_price {
-  color: #a1342d;
+  background-image: linear-gradient(
+    to right,
+    rgb(245, 185, 4),
+    rgb(204, 122, 103)
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
 }
 .counter {
   position: absolute;
