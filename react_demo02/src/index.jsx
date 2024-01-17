@@ -1,55 +1,54 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-// 1. 组件被渲染，函数中的代码就会执行
-
+import Img from './my_img.png'
 function App() {
-  // 多个状态的情况
-  const [num, setNum] = useState(0)
-  const [money, setMoney] = useState(11000)
-  const [name, setName] = useState('Tricia')
-
-  // 如果我需要在num状态发生变化时，修改网页标题为 “点击了XX次”，那么就需要用到useEffect
-  /*   useEffect(() => {
-    // 加了依赖项，表示只有num或者name状态变化时才执行以下代码
-    console.log('effect执行')
-    document.title = `
-      点击了${num}次数
-    `
-  }, [num, name]) */
-
-  /*  useEffect(() => {
-    // 依赖为空数组，则effect只在初识化时执行一次
-    console.log('effect只执行一次')
-  }, []) */
-
-  useEffect(() => {
-    // 加了依赖项，表示num状态变化时才执行以下代码
-    console.log('effect执行')
-  }, [num])
-  useEffect(() => {
-    // 加了依赖项，表示name状态变化时才执行以下代码
-    console.log('effect执行')
-  }, [name])
+  const [flag, setFlag] = useState(0)
+  const clearImg = () => {
+    setFlag(1)
+    console.log(flag)
+  }
   return (
-    <div>
-      <h1>
-        num - {num}
-        {/* 2. 更新状态时： 拿到状态更新的上一次的最新的值*/}
-        <button onClick={() => setNum(num + 1)}>加1</button>
-      </h1>
-
-      <h1>
-        money- {money}
-        {/* 2. 更新状态时： 拿到状态更新的上一次的最新的值*/}
-        <button onClick={() => setMoney(money + 100)}>加100</button>
-      </h1>
-
-      <h1>
-        name - {name}
-        {/* 2. 更新状态时： 拿到状态更新的上一次的最新的值*/}
-        <button onClick={() => setName('cony')}>改名</button>
-      </h1>
-    </div>
+    <>
+      {flag === 1 ? <></> : <Clear></Clear>}
+      <button onClick={clearImg}>清除图片跟随</button>
+    </>
   )
 }
+// 清理副作用案例 - 图像跟随鼠标移动
+function Clear() {
+  const [mouse, setMouse] = useState({
+    x: 0,
+    y: 0,
+  })
+  // 移动鼠标时改变 x y 值
+  const move = (e) => {
+    // 注意：使用新值替换旧值
+    setMouse({ x: e.pageX + 30, y: e.pageY + 30 })
+  }
+  useEffect(() => {
+    window.addEventListener('mousemove', move)
+    // 组件卸载时，移除事件
+    return () => {
+      console.log('移除副作用')
+      window.removeEventListener('mousemove', move)
+    }
+  }, [])
+  return (
+    <>
+      <div>
+        <img
+          src={Img}
+          style={{
+            position: 'absolute',
+            left: mouse.x,
+            top: mouse.y,
+            backgroundColor: 'green',
+          }}
+          alt=""
+        />
+      </div>
+    </>
+  )
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(<App></App>)
