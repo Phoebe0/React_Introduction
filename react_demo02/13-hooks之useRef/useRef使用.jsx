@@ -1,7 +1,6 @@
 // 1. 导入 useRef hook
 import React, { useRef } from 'react'
 import ReactDOM from 'react-dom/client'
-import Son from './Son'
 
 function App() {
   // 2. 创建ref对象
@@ -20,7 +19,6 @@ function App() {
       >
         操作Ref
       </button>
-      <Son></Son>
     </>
   )
 }
