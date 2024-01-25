@@ -1,10 +1,10 @@
 import React from 'react'
-import style from './index.module.scss'
+// import '../css/index.min.css'
 export default function ChyHeader(props) {
   console.log(props)
   return (
     <div>
-      <div className={style.header}>{props.title}</div>
+      <div className="header">{props.title}</div>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ChyHeader from './components/ChyHeader'
 import ChyFooter from './components/ChyFooter'
 import ChyProducts from './components/ChyProducts'
+import './css/index.min.css'
 // One-way data flow . state and function must be provided by the Parent Component
 export default function App(props) {
   /* data:

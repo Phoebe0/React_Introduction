@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './index.module.scss'
+// import '../css/index.min.css'
 import { Checkbox, Button } from 'antd'
 
 const onClick = () => {
@@ -21,8 +21,8 @@ export default function ChyFooter({ prdList, changeSelectAll }) {
     .reduce((sum, item) => sum + item.pPrice, 0)
 
   return (
-    <div className={style.footer}>
-      <div className={style.select_all}>
+    <div className="footer">
+      <div className="select_all">
         <Checkbox
           onChange={() => changeSelectAll(!isCheckAll)}
           checked={isCheckAll}
@@ -30,11 +30,11 @@ export default function ChyFooter({ prdList, changeSelectAll }) {
           ALL
         </Checkbox>
       </div>
-      <div className={style.total}>
+      <div className="total">
         TOTAL:
-        <span className={style.pro_price}>$ {totalPrice}</span>
+        <span className="pro_price">$ {totalPrice}</span>
       </div>
-      <div className={style.settle}>
+      <div className="settle">
         <Button type="dashed" ghost onClick={onClick}>
           SELLTE
           <span>({totalNum})</span>

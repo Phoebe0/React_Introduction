@@ -1,18 +1,18 @@
 import React from 'react'
-import style from './index.module.scss'
+// import '../css/index.min.css'
 import { Checkbox, List } from 'antd'
 
 export default function ChyProducts(props) {
   console.log(props)
   return (
     <div>
-      <div className={style.section}>
+      <div className="section">
         <List
           dataSource={props.prdList}
           renderItem={(item) => (
             <>
               <List.Item>
-                <div className={style.product}>
+                <div className="product">
                   {/*If I want to change the status. Rember:  One-way data flow !
                   So define the method in the parent component Then call method here
                   */}
@@ -20,12 +20,12 @@ export default function ChyProducts(props) {
                     onChange={() => props.isChecked(item.pId)}
                     checked={item.pState === 0 ? false : true}
                   ></Checkbox>
-                  <img src={item.pImage} alt="" className={style.img} />
-                  <div className={style.detail}>
+                  <img src={item.pImage} alt="" className="img" />
+                  <div className="detail">
                     <div>{item.pName}</div>
-                    <div className={style.pro_price}>$ {item.pPrice}</div>
+                    <div className="pro_price">$ {item.pPrice}</div>
                   </div>
-                  <div className={style.counter}>counter -- {item.pNum}</div>
+                  <div className="counter">counter -- {item.pNum}</div>
                 </div>
               </List.Item>
             </>
