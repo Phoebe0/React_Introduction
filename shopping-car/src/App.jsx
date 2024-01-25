@@ -13,6 +13,7 @@ export default function App(props) {
         pNum：product number
         pState：check or not the product?  0-not checked   ;   1-checked
 */
+  // static data
   const data = [
     {
       pId: 'chy001',
