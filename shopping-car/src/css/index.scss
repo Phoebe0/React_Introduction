@@ -50,4 +50,12 @@ $text-color: #9e8d8d;
 .counter {
   position: absolute;
   right: 0.625rem;
+  .prd-input-number1 {
+    border-radius: 0%;
+    width: 50px;
+  }
+  .prd-input-number2 {
+    border-radius: 0%;
+    width: 30px;
+  }
 }

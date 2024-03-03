@@ -50,3 +50,13 @@
   position: absolute;
   right: 0.625rem;
 }
+
+.counter .prd-input-number1 {
+  border-radius: 0%;
+  width: 50px;
+}
+
+.counter .prd-input-number2 {
+  border-radius: 0%;
+  width: 30px;
+}

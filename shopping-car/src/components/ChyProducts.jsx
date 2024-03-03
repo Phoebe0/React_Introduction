@@ -1,4 +1,5 @@
 import React from 'react'
+import ChyProductCounter from './ChyProductCounter'
 // import '../css/index.min.css'
 import { Checkbox, List } from 'antd'
 
@@ -17,15 +18,17 @@ export default function ChyProducts(props) {
                   So define the method in the parent component Then call method here
                   */}
                   <Checkbox
-                    onChange={() => props.isChecked(item.pId)}
-                    checked={item.pState === 0 ? false : true}
+                    onChange={() => props.isChecked(item.pid)}
+                    checked={item.pstate === 0 ? false : true}
                   ></Checkbox>
-                  <img src={item.pImage} alt="" className="img" />
+                  <img src={item.pimage} alt="" className="img" />
                   <div className="detail">
-                    <div>{item.pName}</div>
-                    <div className="pro_price">$ {item.pPrice}</div>
+                    <div>{item.pname}</div>
+                    <div className="pro_price">$ {item.pprice}</div>
                   </div>
-                  <div className="counter">counter -- {item.pNum}</div>
+                  <div className="counter">
+                    <ChyProductCounter></ChyProductCounter> -- {item.pnum}
+                  </div>
                 </div>
               </List.Item>
             </>

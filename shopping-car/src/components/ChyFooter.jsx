@@ -9,16 +9,16 @@ const onClick = () => {
 export default function ChyFooter({ prdList, changeSelectAll }) {
   // select_all ： Based on the pState of each item in prdList, decide select_all is checked or not
   // If every pState is 1,isCheckAll must be true
-  const isCheckAll = prdList.every((item) => item.pState === 1)
+  const isCheckAll = prdList.every((item) => item.pstate === 1)
   // total money & total number
   // 1. If pState is 1，get it
   // 2. accumulate
   const totalNum = prdList
-    .filter((item) => item.pState === 1)
-    .reduce((sum, item) => sum + item.pNum, 0)
+    .filter((item) => item.pstate === 1)
+    .reduce((sum, item) => sum + item.pnum, 0)
   const totalPrice = prdList
-    .filter((item) => item.pState === 1)
-    .reduce((sum, item) => sum + item.pPrice, 0)
+    .filter((item) => item.pstate === 1)
+    .reduce((sum, item) => sum + item.pprice, 0)
 
   return (
     <div className="footer">
