@@ -1,28 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { InputNumber, Button } from 'antd'
 
-export default function ChyProductCounter() {
-  const [value, setValue] = useState(0)
-  // add product number
-  const increase = () => {
-    setValue(value + 1)
+export default function ChyProductCounter(props) {
+  const increasePrd = () => {
+    props.changeCount(props.id, 1)
   }
-  // decrease product number
-  const decrease = () => {
-    setValue(value === 0 ? 0 : value - 1)
+  const decreasePrd = () => {
+    if (props.value <= 1) return
+    props.changeCount(props.id, -1)
   }
   return (
     <>
-      <Button className="prd-input-number2" onClick={increase}>
+      <Button className="prd-input-number2" onClick={increasePrd}>
         +
       </Button>
       <InputNumber
         className="prd-input-number1"
-        value={value}
-        onChange={setValue}
-        min={0}
+        value={props.value}
+        readOnly
+        min={1}
+        controls={false}
       ></InputNumber>
-      <Button className="prd-input-number2" onClick={decrease}>
+      <Button className="prd-input-number2" onClick={decreasePrd}>
         -
       </Button>
     </>

@@ -4,7 +4,6 @@ import ChyProductCounter from './ChyProductCounter'
 import { Checkbox, List } from 'antd'
 
 export default function ChyProducts(props) {
-  console.log(props)
   return (
     <div>
       <div className="section">
@@ -27,7 +26,11 @@ export default function ChyProducts(props) {
                     <div className="pro_price">$ {item.pprice}</div>
                   </div>
                   <div className="counter">
-                    <ChyProductCounter></ChyProductCounter> -- {item.pnum}
+                    <ChyProductCounter
+                      id={item.pid}
+                      value={item.pnum}
+                      changeCount={props.changeCount}
+                    ></ChyProductCounter>
                   </div>
                 </div>
               </List.Item>

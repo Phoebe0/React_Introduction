@@ -5,7 +5,9 @@ import ChyFooter from './components/ChyFooter'
 import ChyProducts from './components/ChyProducts'
 import './css/index.min.css'
 // One-way data flow . state and function must be provided by the Parent Component
-export default function App(props) {
+export default function App() {
+  // const [value, setValue] = useState(0)
+
   /* data:
         pId: product id
         pImage：product image
@@ -16,7 +18,7 @@ export default function App(props) {
 */
   //  product data from DB
   const [prdList, setPrdList] = useState([])
-  // send request
+  // select all products
   useEffect(() => {
     async function getList() {
       const res = await axios.post('http://localhost:3301/api/SelectPrd')
@@ -53,12 +55,34 @@ export default function App(props) {
       })
     )
   }
+
+  // edit produts's number.  Need pid & pnum
+  const changeCount = (id, num) => {
+    setPrdList(
+      prdList.map((item) => {
+        //  find the product ID that needs to be edited
+        if (item.pid === id) {
+          return {
+            ...item,
+            pnum: item.pnum + num,
+          }
+        } else {
+          return item
+        }
+      })
+    )
+    console.log(id, num, prdList)
+  }
   return (
     <div>
       {/* Header */}
       <ChyHeader title="My Shop Car"></ChyHeader>
       {/* Product List */}
-      <ChyProducts prdList={prdList} isChecked={isChecked}></ChyProducts>
+      <ChyProducts
+        prdList={prdList}
+        isChecked={isChecked}
+        changeCount={changeCount}
+      ></ChyProducts>
       {/* Footer */}
       <ChyFooter
         prdList={prdList}

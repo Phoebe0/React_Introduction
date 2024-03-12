@@ -59,4 +59,9 @@
 .counter .prd-input-number2 {
   border-radius: 0%;
   width: 30px;
+  text-align: center;
+}
+
+.counter .ant-input-number-input {
+  text-align: center;
 }
