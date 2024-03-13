@@ -4,6 +4,8 @@ import ChyHeader from './components/ChyHeader'
 import ChyFooter from './components/ChyFooter'
 import ChyProducts from './components/ChyProducts'
 import './css/index.min.css'
+import Context from './context/context'
+const { Provider } = Context
 // One-way data flow . state and function must be provided by the Parent Component
 export default function App() {
   // const [value, setValue] = useState(0)
@@ -74,20 +76,22 @@ export default function App() {
     console.log(id, num, prdList)
   }
   return (
-    <div>
-      {/* Header */}
-      <ChyHeader title="My Shop Car"></ChyHeader>
-      {/* Product List */}
-      <ChyProducts
-        prdList={prdList}
-        isChecked={isChecked}
-        changeCount={changeCount}
-      ></ChyProducts>
-      {/* Footer */}
-      <ChyFooter
-        prdList={prdList}
-        changeSelectAll={changeSelectAll}
-      ></ChyFooter>
-    </div>
+    <Provider value={{ changeCount }}>
+      <div>
+        {/* Header */}
+        <ChyHeader title="My Shop Car"></ChyHeader>
+        {/* Product List */}
+        <ChyProducts
+          prdList={prdList}
+          isChecked={isChecked}
+          // changeCount={changeCount}
+        ></ChyProducts>
+        {/* Footer */}
+        <ChyFooter
+          prdList={prdList}
+          changeSelectAll={changeSelectAll}
+        ></ChyFooter>
+      </div>
+    </Provider>
   )
 }

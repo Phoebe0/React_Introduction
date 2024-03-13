@@ -29,7 +29,7 @@ export default function ChyProducts(props) {
                     <ChyProductCounter
                       id={item.pid}
                       value={item.pnum}
-                      changeCount={props.changeCount}
+                      // changeCount={props.changeCount}
                     ></ChyProductCounter>
                   </div>
                 </div>

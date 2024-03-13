@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { InputNumber, Button } from 'antd'
+import context from '../context/context'
 
 export default function ChyProductCounter(props) {
+  const { changeCount } = useContext(context)
+
   const increasePrd = () => {
-    props.changeCount(props.id, 1)
+    changeCount(props.id, 1)
   }
   const decreasePrd = () => {
     if (props.value <= 1) return
-    props.changeCount(props.id, -1)
+    changeCount(props.id, -1)
   }
   return (
     <>
