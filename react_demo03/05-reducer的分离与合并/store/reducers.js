@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { LEVEL_ADD, MONEY_ADD, MONEY_SUB, WEIGHT_SUB } from './constants'
+
 const moneyState = {
   money: 10000,
 }
@@ -11,12 +11,12 @@ const weightState = {
 }
 function moneyReducer(state = moneyState, action) {
   switch (action.type) {
-    case MONEY_ADD:
+    case 'money/add':
       return {
         ...state,
         money: state.money + action.payload,
       }
-    case MONEY_SUB:
+    case 'money/sub':
       return {
         ...state,
         money: state.money - action.payload,
@@ -27,7 +27,7 @@ function moneyReducer(state = moneyState, action) {
 }
 function weightReducer(state = weightState, action) {
   switch (action.type) {
-    case WEIGHT_SUB:
+    case 'weight/sub':
       return {
         ...state,
         weight: state.weight - action.payload,
@@ -38,7 +38,7 @@ function weightReducer(state = weightState, action) {
 }
 function levelReducer(state = levelState, action) {
   switch (action.type) {
-    case LEVEL_ADD:
+    case 'level/add1':
       return {
         ...state,
         level: state.level + action.payload,
