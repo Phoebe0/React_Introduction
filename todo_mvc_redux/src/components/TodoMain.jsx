@@ -6,6 +6,7 @@ export default function TodoMain() {
       <input id="toggle-all" className="toggle-all" type="checkbox" />
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
+        {/* todolist的每一项 */}
         <TodoItem></TodoItem>
         <TodoItem></TodoItem>
       </ul>
