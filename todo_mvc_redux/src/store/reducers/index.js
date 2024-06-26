@@ -1,4 +1,4 @@
-// 模块合并 并导出
+// 模块合并 并导出到 store下面的index
 import todos from './todo'
 import { combineReducers } from 'redux'
 
