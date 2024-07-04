@@ -20,7 +20,7 @@ export default function TodoItem(props) {
           }}
         />
         <label>{todoitem.name}</label>
-        <button className="destroy"></button>
+        <button className="destroy" onClick={() => {}}></button>
       </div>
       <input className="edit" />
     </li>
