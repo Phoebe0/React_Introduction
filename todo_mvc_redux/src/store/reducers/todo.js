@@ -1,4 +1,4 @@
-import { CHANGE_STATE } from '../constants/todo'
+import { CHANGE_STATE, DELETE_TODO } from '../constants/todo'
 
 const initList = [
   { id: 1, name: '学习日语，备考N1', isDone: true },
@@ -7,19 +7,26 @@ const initList = [
 ]
 export default function todosReducer(state = initList, action) {
   // 修改单个done属性
-  if (action.type === CHANGE_STATE) {
-    // 注意：状态不可变
-    return state.map((item) => {
-      if (item.id === action.id) {
-        return {
-          ...item,
-          isDone: action.isDone,
+  switch (action.type) {
+    case CHANGE_STATE:
+      // 注意：状态不可变
+      return state.map((item) => {
+        if (item.id === action.id) {
+          return {
+            ...item,
+            isDone: action.isDone,
+          }
+        } else {
+          return item
         }
-      } else {
-        return item
-      }
-    })
-  }
+      })
+    case DELETE_TODO:
+      return state.filter((item) => {
+        // 过滤掉与选择的这一行相同的id
+        return item.id !== action.id
+      })
 
-  return state
+    default:
+      return state
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { changeDone } from '../store/actions/todo.js'
+import { changeDone, delTodo } from '../store/actions/todo.js'
 export default function TodoItem(props) {
   const todoitem = props.todos
   const dispatch = useDispatch()
@@ -20,7 +20,12 @@ export default function TodoItem(props) {
           }}
         />
         <label>{todoitem.name}</label>
-        <button className="destroy" onClick={() => {}}></button>
+        <button
+          className="destroy"
+          onClick={() => {
+            dispatch(delTodo(todoitem.id))
+          }}
+        ></button>
       </div>
       <input className="edit" />
     </li>
