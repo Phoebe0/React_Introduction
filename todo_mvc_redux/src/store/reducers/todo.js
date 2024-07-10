@@ -36,6 +36,7 @@ export default function todosReducer(state = initList, action) {
         },
         ...state,
       ]
+
     default:
       return state
   }

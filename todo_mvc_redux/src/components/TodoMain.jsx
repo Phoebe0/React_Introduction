@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 export default function TodoMain() {
   // 拿到状态
   const todos = useSelector((state) => state.todos)
-  console.log(todos)
+  console.log('Main:',todos)
   // 修改状态
   // const dispatch = useDispatch()
   return (
