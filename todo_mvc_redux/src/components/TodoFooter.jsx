@@ -1,12 +1,11 @@
-import React, { useEffect, useMemo } from 'react'
-import {  useSelector } from 'react-redux'
+import React, { useMemo } from 'react'
+import {  useDispatch, useSelector } from 'react-redux'
+import { changeAll } from '../store/actions/todo'
 
 export default function TodoFooter() {
  const todos = useSelector((state) => state.todos)
- useEffect(() => {
-  console.log('footer',todos)
- })
-  // 计算属性：正在进行中的数量、已完成的数量、提示文字
+const dispatch = useDispatch()
+  // 计算属性：正在进行中的数量、提示文字
   const { activedNum, activeTodoWord } = useMemo(() => {
     const activedNum = todos.filter((item) =>!item.isDone).length
     const activeTodoWord = activedNum > 1? 'items' : 'item'
@@ -23,9 +22,11 @@ export default function TodoFooter() {
       </span>
       <ul className="filters">
         <li>
-          <a className="selected" href="#/">
-            All
-          </a>
+            <a className="selected" href="#/" onClick={() => {
+              dispatch(changeAll(todos.every(item => item.isDone)))
+              }}>
+              All
+            </a>
         </li>
         <li>
           <a href="#/active">Active</a>

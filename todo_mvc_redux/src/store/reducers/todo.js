@@ -1,4 +1,4 @@
-import { ADD_TODO, CHANGE_STATE, DELETE_TODO } from '../constants/todo'
+import { ADD_TODO, CHANGE_ALL, CHANGE_STATE, DELETE_TODO } from '../constants/todo'
 
 const initList = [
   { id: 1, name: '学习日语，备考N1', isDone: true },
@@ -36,7 +36,13 @@ export default function todosReducer(state = initList, action) {
         },
         ...state,
       ]
-
+    case CHANGE_ALL:
+      return state.map((item) => {
+        return {
+         ...item,
+          isDone: !action.isDone,
+        }
+      })
     default:
       return state
   }

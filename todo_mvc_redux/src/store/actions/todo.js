@@ -1,4 +1,4 @@
-import { ADD_TODO, CHANGE_STATE, DELETE_TODO } from '../constants/todo'
+import { ADD_TODO, CHANGE_ALL, CHANGE_STATE, DELETE_TODO } from '../constants/todo'
 
 // 修改单个状态的行为
 export const changeDone = (id, isDone) => {
@@ -20,5 +20,12 @@ export const addTodo = (inputValue) => {
   return {
     type: ADD_TODO,
     name: inputValue,
+  }
+}
+// 全选反选
+export const changeAll = (isDone) => {
+  return {
+    type: CHANGE_ALL,
+    isDone,
   }
 }
