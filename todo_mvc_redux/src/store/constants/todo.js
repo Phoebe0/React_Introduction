@@ -5,3 +5,4 @@ export const ADD_TODO = 'todos/addTodo' // 添加单个待办项
 export const CHANGE_ALL = 'todos/changeAll' // 修改全部复选框状态
 
 export const CHANGE_COMPLETED = 'todos/changeCompleted' // 筛选已完成
+export const CHANGE_NO_COMPLETED = 'todos/changeNpCompleted' // 筛选未完成

@@ -1,4 +1,11 @@
-import { ADD_TODO, CHANGE_ALL, CHANGE_STATE, DELETE_TODO } from '../constants/todo'
+import {
+  ADD_TODO,
+  CHANGE_ALL,
+  CHANGE_COMPLETED,
+  CHANGE_NO_COMPLETED,
+  CHANGE_STATE,
+  DELETE_TODO,
+} from '../constants/todo'
 
 const initList = [
   { id: 1, name: '学习日语，备考N1', isDone: true },
@@ -27,7 +34,7 @@ export default function todosReducer(state = initList, action) {
       })
     case ADD_TODO:
       // 状态不可变！！！
-      if (!action.name.trim()) return
+      if (!action.name.trim()) return state
       return [
         {
           id: state.length + 1,
@@ -39,10 +46,17 @@ export default function todosReducer(state = initList, action) {
     case CHANGE_ALL:
       return state.map((item) => {
         return {
-         ...item,
+          ...item,
           isDone: !action.isDone,
         }
       })
+    case CHANGE_COMPLETED:
+      // 使用展开操作符 (...) 来创建一个新的数组
+      return [...state.filter((item) => item.isDone === true)]
+
+    case CHANGE_NO_COMPLETED:
+      // 同上，创建一个新的数组
+      return [...state.filter((item) => item.isDone === false)]
     default:
       return state
   }
