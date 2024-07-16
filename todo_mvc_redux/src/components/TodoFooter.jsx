@@ -9,7 +9,7 @@ import {setVisibilityFilter} from '../store/actions/todo'
 import {
   changeAll,
 } from '../store/actions/todo'
-import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from '../store/constants/todo'
+import {FILTER_TITLES} from '../store/constants/filiter'
 
 export default function TodoFooter() {
   const [filterStatus, setFilterStatus] = useState('SHOW_ALL') // 组件内部的筛选状态
@@ -46,11 +46,7 @@ export default function TodoFooter() {
         <strong>0</strong> {activeTodoWord} left
       </span>
     )
-    const FILTER_TITLES = {
-      [SHOW_ALL]: 'All',
-      [SHOW_ACTIVE]: 'Active',
-      [SHOW_COMPLETED]: 'Completed'
-    }
+    
     // const filterSelect = selectedFilter => ;
 
   return (
