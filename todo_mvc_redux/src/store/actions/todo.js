@@ -1,10 +1,9 @@
 import {
   ADD_TODO,
   CHANGE_ALL,
-  CHANGE_COMPLETED,
-  CHANGE_NO_COMPLETED,
   CHANGE_STATE,
   DELETE_TODO,
+  SET_VISIBILITY_FILTER
 } from '../constants/todo'
 
 // 修改单个状态的行为
@@ -36,17 +35,9 @@ export const changeAll = (isDone) => {
     isDone,
   }
 }
-// 筛选已完成
-export const changeCompleted = (isDone) => {
-  return {
-    type: CHANGE_COMPLETED,
-    isDone,
-  }
-}
-// 筛选未完成
-export const changeNoCompleted = (isDone) => {
-  return {
-    type: CHANGE_NO_COMPLETED,
-    isDone,
-  }
-}
+
+// 底部筛选栏 - 用于更新Redux store中的过滤状态
+export const setVisibilityFilter = (filter) => ({
+  type: SET_VISIBILITY_FILTER,
+  filter
+})

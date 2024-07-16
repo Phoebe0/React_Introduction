@@ -1,8 +1,6 @@
 import {
   ADD_TODO,
   CHANGE_ALL,
-  CHANGE_COMPLETED,
-  CHANGE_NO_COMPLETED,
   CHANGE_STATE,
   DELETE_TODO,
 } from '../constants/todo'
@@ -50,13 +48,7 @@ export default function todosReducer(state = initList, action) {
           isDone: !action.isDone,
         }
       })
-    case CHANGE_COMPLETED:
-      // 使用展开操作符 (...) 来创建一个新的数组
-      return [...state.filter((item) => item.isDone === true)]
-
-    case CHANGE_NO_COMPLETED:
-      // 同上，创建一个新的数组
-      return [...state.filter((item) => item.isDone === false)]
+      
     default:
       return state
   }

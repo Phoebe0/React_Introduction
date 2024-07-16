@@ -1,16 +1,21 @@
 import React, { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import classNames from 'classnames';
+import {setVisibilityFilter} from '../store/actions/todo'
+
+
+// import { FILTER_TITLES} from '../store/constants/filter'
+
 import {
   changeAll,
-  changeCompleted,
-  changeNoCompleted,
 } from '../store/actions/todo'
+import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from '../store/constants/todo'
 
 export default function TodoFooter() {
   const [filterStatus, setFilterStatus] = useState('SHOW_ALL') // 组件内部的筛选状态
   const todos = useSelector((state) => state.todos)
   const dispatch = useDispatch()
-
+  const filter = useSelector(state => state.filter);
   // 根据当前筛选状态过滤 todos
   const filteredTodos = useMemo(() => {
     switch (filterStatus) {
@@ -41,56 +46,36 @@ export default function TodoFooter() {
         <strong>0</strong> {activeTodoWord} left
       </span>
     )
-
-  // 处理筛选按钮点击事件
-  const handleFilterClick = (filter) => {
-    setFilterStatus(filter) // 更新组件内部的筛选状态
-    switch (filter) {
-      case 'SHOW_COMPLETED':
-        dispatch(changeCompleted(true))
-        break
-      case 'SHOW_NO_COMPLETED':
-        dispatch(changeNoCompleted(false))
-        break
-      default:
-        dispatch(changeAll(todos.every((todo) => todo.isDone))) // 假设这个 action 用来重置 todos 状态
-        break
+    const FILTER_TITLES = {
+      [SHOW_ALL]: 'All',
+      [SHOW_ACTIVE]: 'Active',
+      [SHOW_COMPLETED]: 'Completed'
     }
-  }
+    // const filterSelect = selectedFilter => ;
 
   return (
     <footer className="footer">
       {activedTodosDisplay}
       <ul className="filters">
-        <li>
-          <a
-            href="#/"
-            className={filterStatus === 'SHOW_ALL' ? 'selected' : ''}
-            onClick={() => handleFilterClick('SHOW_ALL')}
-          >
-            All
-          </a>
-        </li>
-        <li>
-          <a
-            href="#/active"
-            className={filterStatus === 'SHOW_NO_COMPLETED' ? 'selected' : ''}
-            onClick={() => handleFilterClick('SHOW_NO_COMPLETED')}
-          >
-            Active
-          </a>
-        </li>
-        <li>
-          <a
-            href="#/completed"
-            className={filterStatus === 'SHOW_COMPLETED' ? 'selected' : ''}
-            onClick={() => handleFilterClick('SHOW_COMPLETED')}
-          >
-            Completed
-          </a>
-        </li>
+        {Object.keys(FILTER_TITLES).map(filterTitle => (
+          <li key={filterTitle}>
+            <a
+              href="./#"
+              // className={classNames({ selected: filterTitle === filter })}
+              onClick={() => dispatch(setVisibilityFilter(filterTitle))}
+            >
+              {FILTER_TITLES[filterTitle]}
+            </a>
+          </li>
+        ))}
       </ul>
-      {/* 其他组件代码，例如清除已完成 todos 的按钮 */}
+
+      <button
+        className="clear-completed"
+        onClick={() => dispatch(changeAll(true))}
+      >
+        Clear completed
+      </button>
     </footer>
   )
 }
