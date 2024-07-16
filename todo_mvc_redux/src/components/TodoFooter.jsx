@@ -1,21 +1,16 @@
 import React, { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import classNames from 'classnames';
-import {setVisibilityFilter} from '../store/actions/todo'
+import classNames from 'classnames'
+import { setVisibilityFilter } from '../store/actions/todo'
 
-
-// import { FILTER_TITLES} from '../store/constants/filter'
-
-import {
-  changeAll,
-} from '../store/actions/todo'
-import {FILTER_TITLES} from '../store/constants/filiter'
+import { changeAll } from '../store/actions/todo'
+import { FILTER_TITLES } from '../store/constants/filiter'
 
 export default function TodoFooter() {
   const [filterStatus, setFilterStatus] = useState('SHOW_ALL') // 组件内部的筛选状态
   const todos = useSelector((state) => state.todos)
   const dispatch = useDispatch()
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector((state) => state.filter)
   // 根据当前筛选状态过滤 todos
   const filteredTodos = useMemo(() => {
     switch (filterStatus) {
@@ -46,18 +41,18 @@ export default function TodoFooter() {
         <strong>0</strong> {activeTodoWord} left
       </span>
     )
-    
-    // const filterSelect = selectedFilter => ;
+
+  // const filterSelect = selectedFilter => ;
 
   return (
     <footer className="footer">
       {activedTodosDisplay}
       <ul className="filters">
-        {Object.keys(FILTER_TITLES).map(filterTitle => (
+        {Object.keys(FILTER_TITLES).map((filterTitle) => (
           <li key={filterTitle}>
             <a
               href="./#"
-              // className={classNames({ selected: filterTitle === filter })}
+              className={classNames({ selected: filterTitle === filter })}
               onClick={() => dispatch(setVisibilityFilter(filterTitle))}
             >
               {FILTER_TITLES[filterTitle]}
