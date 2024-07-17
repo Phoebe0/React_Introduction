@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TodoItem from './TodoItem'
 import { useSelector } from 'react-redux'
 import { selectVisible } from '../store/selectors/isVisible'
 export default function TodoMain() {
+  const todos = useSelector((state) => state.todos)
   // 筛选出已完成or未完成or全部的项
   const visibleTodos = useSelector((state) =>
-    selectVisible(state.todos, state.visibleTodos)
+    selectVisible(state.todos, state.visibilityFilter)
   )
   return (
     <section className="main">

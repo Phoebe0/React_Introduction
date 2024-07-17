@@ -28,7 +28,7 @@ export const addTodo = (inputValue) => {
     name: inputValue,
   }
 }
-// 全选反选
+// 清除所有已完成
 export const changeAll = (isDone) => {
   return {
     type: CHANGE_ALL,

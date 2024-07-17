@@ -5,54 +5,36 @@ import { setVisibilityFilter } from '../store/actions/todo'
 
 import { changeAll } from '../store/actions/todo'
 import { FILTER_TITLES } from '../store/constants/filiter'
+import { SHOW_ACTIVE, SHOW_COMPLETED } from '../store/constants/todo'
+import { selectVisible } from '../store/selectors/isVisible'
 
 export default function TodoFooter() {
-  const [filterStatus, setFilterStatus] = useState('SHOW_ALL') // 组件内部的筛选状态
-  const todos = useSelector((state) => state.todos)
   const dispatch = useDispatch()
-  const filter = useSelector((state) => state.filter)
-  // 根据当前筛选状态过滤 todos
-  const filteredTodos = useMemo(() => {
-    switch (filterStatus) {
-      case 'SHOW_COMPLETED':
-        return todos.filter((todo) => todo.isDone)
-      case 'SHOW_NO_COMPLETED':
-        return todos.filter((todo) => !todo.isDone)
-      default:
-        return todos
-    }
-  }, [filterStatus, todos])
-
+  const filter = useSelector((state) => state.visibilityFilter)
+   // 筛选出已完成or未完成or全部的项
+   const filteredTodos = useSelector((state) =>
+   selectVisible(state.todos, state.visibilityFilter)
+ )
   // 计算未完成的 todos 数量
   const { activedNum, activeTodoWord } = useMemo(() => {
-    const activedNum = filteredTodos.filter((todo) => !todo.isDone).length
-    const activeTodoWord = activedNum === 1 ? 'item' : 'items'
+    const activedNum = filteredTodos.filter((todo) => !todo.isDone).length || 0
+    const activeTodoWord = activedNum <=1  ? 'item' : 'items'
     return { activedNum, activeTodoWord }
   }, [filteredTodos])
 
-  // 渲染未完成的数量
-  const activedTodosDisplay =
-    activedNum > 0 ? (
-      <span className="todo-count">
-        <strong>{activedNum}</strong> {activeTodoWord} left
-      </span>
-    ) : (
-      <span className="todo-count">
-        <strong>0</strong> {activeTodoWord} left
-      </span>
-    )
-
-  // const filterSelect = selectedFilter => ;
 
   return (
     <footer className="footer">
-      {activedTodosDisplay}
+        <span className="todo-count">
+          {/* 渲染未完成项数 */}
+        <strong>{activedNum}</strong> {activeTodoWord} left
+      </span>
       <ul className="filters">
         {Object.keys(FILTER_TITLES).map((filterTitle) => (
           <li key={filterTitle}>
             <a
               href="./#"
-              className={classNames({ selected: filterTitle === filter })}
+              // className={classNames({ selected: filterTitle === filter })}
               onClick={() => dispatch(setVisibilityFilter(filterTitle))}
             >
               {FILTER_TITLES[filterTitle]}
