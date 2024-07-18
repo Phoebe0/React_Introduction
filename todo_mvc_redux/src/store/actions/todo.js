@@ -3,7 +3,8 @@ import {
   CHANGE_ALL,
   CHANGE_STATE,
   DELETE_TODO,
-  SET_VISIBILITY_FILTER
+  SET_LOCAL_TOKEN,
+  SET_VISIBILITY_FILTER,
 } from '../constants/todo'
 
 // 修改单个状态的行为
@@ -39,5 +40,9 @@ export const changeAll = (isDone) => {
 // 底部筛选栏 - 用于更新Redux store中的过滤状态
 export const setVisibilityFilter = (filter) => ({
   type: SET_VISIBILITY_FILTER,
-  filter
+  filter,
+})
+// 本地localstore存储
+export const setLocalToken = () => ({
+  type: SET_LOCAL_TOKEN,
 })
