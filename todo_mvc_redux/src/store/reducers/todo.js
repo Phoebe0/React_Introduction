@@ -42,13 +42,8 @@ export default function todosReducer(state = initList, action) {
         ...state,
       ]
     case CHANGE_ALL:
-      return state.map((item) => {
-        return {
-          ...item,
-          isDone: !action.isDone,
-        }
-      })
-      
+      return state.filter((item) => item.isDone !== action.isDone)
+
     default:
       return state
   }
