@@ -43,6 +43,7 @@ export const setVisibilityFilter = (filter) => ({
   filter,
 })
 // 本地localstore存储
-export const setLocalToken = () => ({
+export const setLocalToken = (todos) => ({
   type: SET_LOCAL_TOKEN,
+  todos,
 })

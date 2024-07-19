@@ -3,6 +3,7 @@ import {
   CHANGE_ALL,
   CHANGE_STATE,
   DELETE_TODO,
+  SET_LOCAL_TOKEN,
 } from '../constants/todo'
 
 const initList = [
@@ -43,6 +44,9 @@ export default function todosReducer(state = initList, action) {
       ]
     case CHANGE_ALL:
       return state.filter((item) => item.isDone !== action.isDone)
+    case SET_LOCAL_TOKEN:
+      return action.todos
+      
 
     default:
       return state
