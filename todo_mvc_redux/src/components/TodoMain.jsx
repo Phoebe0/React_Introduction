@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import TodoItem from './TodoItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectVisible } from '../store/selectors/isVisible'
-import { setLocalToken } from '../store/actions/todo';
+import { setLocalToken } from '../store/actions/todo'
 export default function TodoMain() {
-  const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch()
+  const todos = useSelector((state) => state.todos)
 
   useEffect(() => {
-    const savedTodos = JSON.parse(localStorage.getItem('todos'));
+    const savedTodos = JSON.parse(localStorage.getItem('todos'))
     if (savedTodos) {
-      dispatch(setLocalToken(savedTodos));
+      dispatch(setLocalToken(savedTodos))
     }
-  }, [dispatch]);
+  }, [dispatch])
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
 
   // 筛选出已完成or未完成or全部的项
   const visibleTodos = useSelector((state) =>

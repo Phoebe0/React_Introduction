@@ -1,32 +1,28 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import classNames from 'classnames'
 import { setVisibilityFilter } from '../store/actions/todo'
 
 import { changeAll } from '../store/actions/todo'
 import { FILTER_TITLES } from '../store/constants/filiter'
-import { SHOW_ACTIVE, SHOW_COMPLETED } from '../store/constants/todo'
 import { selectVisible } from '../store/selectors/isVisible'
 
 export default function TodoFooter() {
   const dispatch = useDispatch()
-  const filter = useSelector((state) => state.visibilityFilter)
-   // 筛选出已完成or未完成or全部的项
-   const filteredTodos = useSelector((state) =>
-   selectVisible(state.todos, state.visibilityFilter)
- )
+  // 筛选出已完成or未完成or全部的项
+  const filteredTodos = useSelector((state) =>
+    selectVisible(state.todos, state.visibilityFilter)
+  )
   // 计算未完成的 todos 数量
   const { activedNum, activeTodoWord } = useMemo(() => {
     const activedNum = filteredTodos.filter((todo) => !todo.isDone).length || 0
-    const activeTodoWord = activedNum <=1  ? 'item' : 'items'
+    const activeTodoWord = activedNum <= 1 ? 'item' : 'items'
     return { activedNum, activeTodoWord }
   }, [filteredTodos])
 
-
   return (
     <footer className="footer">
-        <span className="todo-count">
-          {/* 渲染未完成项数 */}
+      <span className="todo-count">
+        {/* 渲染未完成项数 */}
         <strong>{activedNum}</strong> {activeTodoWord} left
       </span>
       <ul className="filters">
