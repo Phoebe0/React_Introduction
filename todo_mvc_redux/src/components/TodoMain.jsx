@@ -10,8 +10,10 @@ export default function TodoMain() {
   useEffect(() => {
     const savedTodos = JSON.parse(localStorage.getItem('todos'))
     if (savedTodos) {
+      console.log(savedTodos)
       dispatch(setLocalToken(savedTodos))
     }
+    //  [dispatch] 作为依赖数组。只有当 dispatch 更新时才重新执行 useEffect 中的逻辑
   }, [dispatch])
 
   useEffect(() => {
