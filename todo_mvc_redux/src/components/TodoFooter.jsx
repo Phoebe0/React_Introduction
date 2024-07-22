@@ -4,20 +4,17 @@ import { setVisibilityFilter } from '../store/actions/todo'
 
 import { changeAll } from '../store/actions/todo'
 import { FILTER_TITLES } from '../store/constants/filiter'
-import { selectVisible } from '../store/selectors/isVisible'
 
 export default function TodoFooter() {
   const dispatch = useDispatch()
-  // 筛选出已完成or未完成or全部的项
-  const filteredTodos = useSelector((state) =>
-    selectVisible(state.todos, state.visibilityFilter)
-  )
+  // 全部项
+  const todos = useSelector((state) => state.todos)
   // 计算未完成的 todos 数量
   const { activedNum, activeTodoWord } = useMemo(() => {
-    const activedNum = filteredTodos.filter((todo) => !todo.isDone).length || 0
+    const activedNum = todos.filter((todo) => !todo.isDone).length || 0
     const activeTodoWord = activedNum <= 1 ? 'item' : 'items'
     return { activedNum, activeTodoWord }
-  }, [filteredTodos])
+  }, [todos])
 
   return (
     <footer className="footer">
