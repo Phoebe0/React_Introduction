@@ -1,16 +1,6 @@
-import React from 'react'
-// 根据hash值的变化，实现页面的切换
-export const index = () => {
-  return (
-    <>
-      <ul>
-        <li>
-          <a href="#">首页</a>
-        </li>
-        <li>
-          <a href="#">关于</a>
-        </li>
-      </ul>
-    </>
-  )
-}
+// 1. 导入 useRef hook
+import React, { useState, useRef } from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App></App>)
