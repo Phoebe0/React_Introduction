@@ -3,7 +3,7 @@ import React from 'react'
 // BrowserRouter 路由地址中不带#的，也就是历史模式
 // 路由组件：Route
 // 路由链接：Link
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { HashRouter, Route, Link } from 'react-router-dom'
 import Home from './views/Home'
 import About from './views/About'
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
 
     <div>
       <h1>App根组件</h1>
-      <BrowserRouter>
+      <HashRouter>
         {/* 2. 使用Link组件并设置to属性，制定要跳转的路由地址。
           Link标签最终渲染的时候会被渲染为a链接 */}
         <Link to="/home">首页</Link>
@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/about">
           <About></About>
         </Route>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   )
 }
