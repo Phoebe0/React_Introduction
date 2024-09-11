@@ -20,9 +20,12 @@ export default function App() {
         {/* 3. 使用Route组件并设置path属性，制定路由地址。
             Route标签最终渲染的时候会被渲染为div标签 
             要展示的组件放在Route标签之内*/}
-        {/* 使用component属性的方式展示组件，Route标签中什么都不能有 */}
-        <Route path="/home" component={Home}></Route>
-        <Route path="/about" component={About}></Route>
+        <Route path="/home">
+          <Home></Home>
+        </Route>
+        <Route path="/about">
+          <About></About>
+        </Route>
       </BrowserRouter>
     </div>
   )
