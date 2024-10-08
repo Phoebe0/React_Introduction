@@ -8,9 +8,13 @@ export default function App() {
     <div>
       <h1>App根组件</h1>
       <BrowserRouter>
-        <Link to="/home">首页</Link>
-        <NavLink to="/about">关于</NavLink>
-        <Route path="/home" component={Home}></Route>
+        <NavLink to="/" exact>
+          首页
+        </NavLink>
+        <NavLink to="/about" activeClassName="aboutCurrent">
+          关于
+        </NavLink>
+        <Route path="/" component={Home}></Route>
         <Route path="/about" component={About}></Route>
       </BrowserRouter>
     </div>
