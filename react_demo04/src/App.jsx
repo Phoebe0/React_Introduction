@@ -1,5 +1,10 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  NavLink,
+} from 'react-router-dom'
 import Home from './views/Home'
 import About from './views/About'
 import NotFound from './views/NotFound'
@@ -8,7 +13,7 @@ export default function App() {
   return (
     <div>
       <h1>App根组件</h1>
-      <BrowserRouter>
+      <Router>
         <NavLink to="/" exact>
           首页
         </NavLink>
@@ -24,7 +29,7 @@ export default function App() {
           {/* 匹配是从上到下匹配的，所以404页面必须放在最后。这样其他的path没有匹配到的话就展示404 */}
           <Route component={NotFound}></Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   )
 }
