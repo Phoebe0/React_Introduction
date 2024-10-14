@@ -6,8 +6,8 @@ import {
   NavLink,
 } from 'react-router-dom'
 import Home from './views/Home'
-import About from './views/About'
-import NotFound from './views/NotFound'
+import Article from './views/Article'
+
 import './css/index.css'
 export default function App() {
   return (
@@ -17,17 +17,18 @@ export default function App() {
         <NavLink to="/" exact>
           首页
         </NavLink>
-        <NavLink to="/about" activeClassName="aboutCurrent">
-          关于
+        <NavLink to="/article/1" activeClassName="aboutCurrent">
+          文章1
         </NavLink>
-        <NavLink to="/404" exact>
-          404
+        <NavLink to="/article/2" activeClassName="aboutCurrent">
+          文章2
+        </NavLink>
+        <NavLink to="/article/3" activeClassName="aboutCurrent">
+          文章3
         </NavLink>
         <Switch>
           <Route path="/" exact component={Home}></Route>
-          <Route path="/about" component={About}></Route>
-          {/* 匹配是从上到下匹配的，所以404页面必须放在最后。这样其他的path没有匹配到的话就展示404 */}
-          <Route component={NotFound}></Route>
+          <Route path="/article/:id" component={Article} exact></Route>
         </Switch>
       </Router>
     </div>
