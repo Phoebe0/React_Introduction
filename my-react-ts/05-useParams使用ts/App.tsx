@@ -5,15 +5,6 @@ import About from './views/About'
 import Blog from './views/Blog'
 
 export default function App() {
-  // const num:string&number = 1
-  // let num: any = 10
-  // num = '1'
-  // console.log(num.toFixed(2)) // 不可以使用该方法，因为此时的num不是数字类型
-
-  // let num: unknown = 10
-  // num = '1'
-  // console.log(num.toFixed(2))
-
   return (
     <div>
       <h1>TS项目根组件</h1>

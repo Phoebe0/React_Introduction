@@ -8,7 +8,6 @@ export default function Home() {
     <div>
       <h1>Home</h1>
       {/* 通过编程式导航跳转 About页面 */}
-      {/* 注：hash是不能使用这种方式传递的 */}
       <button onClick={() => history.push('about', { name: 'Tt' })}>
         跳转
       </button>
