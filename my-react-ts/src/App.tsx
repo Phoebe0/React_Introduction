@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './views/Home'
 import About from './views/About'
 import Blog from './views/Blog'
+import Happy from './views/Happy'
 
 export default function App() {
   return (
@@ -22,10 +23,14 @@ export default function App() {
           <li>
             <Link to="/about">关于</Link>
           </li>
+          <li>
+            <Link to="/happy">节日快乐</Link>
+          </li>
         </ul>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
         <Route path="/blog/:id" component={Blog} />
+        <Route path="/happy" component={Happy} />
       </Router>
     </div>
   )
