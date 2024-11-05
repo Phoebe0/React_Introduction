@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import Home from './views/Home'
@@ -26,6 +26,7 @@ export default function App() {
           <li>
             <Link to="/happy">节日快乐</Link>
           </li>
+
         </ul>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
